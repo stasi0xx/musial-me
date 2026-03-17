@@ -5,7 +5,7 @@ export default function ContactSection() {
     const { contactSection } = siteData;
 
     return (
-        <section id={contactSection.id} className="w-full border-t-2 border-black py-16 bg-neutral-50 -mx-4 sm:-mx-6 lg:-mx-10 px-4 sm:px-6 lg:px-10">
+        <section id={contactSection.id} className="w-full border-t-2 border-black py-16">
             <div className="max-w-3xl mx-auto text-center">
                 <span className="inline-block text-xs font-bold uppercase tracking-widest border border-black px-3 py-1 mb-6 rounded-full bg-white">
                     {contactSection.sectionLabel}

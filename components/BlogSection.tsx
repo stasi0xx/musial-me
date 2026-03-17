@@ -10,7 +10,7 @@ export default function BlogSection() {
     if (!blog) return null;
 
     return (
-        <section id="blog" className="py-20 w-full max-w-6xl mx-auto px-4 sm:px-6">
+        <section id="blog" className="py-20 w-full">
             <header className="mb-16 flex flex-col md:flex-row justify-between items-end border-b-4 border-black pb-4 gap-4">
                 <h2 className="text-3xl md:text-5xl font-serif font-bold uppercase tracking-wide">
                     {blog.sectionLabel}

@@ -13,7 +13,7 @@ export default function ProjectsStack() {
     };
 
     return (
-        <section id="projects" className="py-20 w-full max-w-6xl mx-auto px-4 sm:px-6">
+        <section id="initiatives" className="py-20 w-full">
             <h2 className="text-3xl md:text-5xl font-serif font-bold mb-20 uppercase tracking-wide border-b-4 border-black pb-4">
                 {siteData.projects.sectionLabel}
             </h2>

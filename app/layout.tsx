@@ -3,6 +3,8 @@ import { Libre_Baskerville } from "next/font/google";
 import "./globals.css";
 import PaperLoader from "@/components/PaperLoader";
 import SmoothScroll from "@/components/SmoothScroll";
+import Masthead from "@/components/Masthead";
+import Footer from "@/components/Footer";
 
 const libreConfigured = Libre_Baskerville({
     weight: ['400', '700'],
@@ -28,7 +30,9 @@ export default function RootLayout({
             >
                 <SmoothScroll />
                 <PaperLoader />
+                <Masthead />
                 {children}
+                <Footer />
             </body>
         </html>
     );

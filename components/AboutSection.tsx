@@ -2,7 +2,7 @@ import React from 'react';
 
 export const AboutSection = () => {
     return (
-        <section id="about" className="w-full max-w-6xl mx-auto py-20 px-4 sm:px-6 scroll-mt-28">
+        <section id="about" className="w-full py-20 scroll-mt-28">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 border-t-4 border-black pt-12">
                 {/* Left Column (7/12) - Text Only */}
                 <div className="md:col-span-7 flex flex-col gap-8">

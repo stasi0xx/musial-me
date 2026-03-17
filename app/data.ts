@@ -1,9 +1,9 @@
 
 export const siteData = {
     site: {
-        brand: "MUSIAL.ME",
+        brand: "PAWEŁ MUSIAŁ",
         authorName: "Paweł Musiał",
-        tagline: "marketingowiec i rowerzysta",
+        tagline: "Wpadam na pomysły. Często je realizuję.",
         primaryTopics: ["Marketing", "Rower", "Gdynia", "Leszczynki", "Podróże", "Wydarzenia"],
         contact: {
             email: "pawel@musial.me",
@@ -11,8 +11,8 @@ export const siteData = {
         },
         navigation: [
             { label: "O mnie", href: "/#about" },
-            { label: "Blog", href: "/#blog" },
-            { label: "Projekty", href: "/#projects" }
+            { label: "Blog", href: "/blog" },
+            { label: "Inicjatywy", href: "/#initiatives" }
         ]
     },
     masthead: {
@@ -29,8 +29,8 @@ export const siteData = {
     },
     hero: {
         headline: "Paweł Musiał",
-        deck: "Marketingowiec i rowerzysta",
-        lead: "Od ponad 20 lat pracuję w marketingu — projektuję, tworzę i oceniam komunikację marek. Równolegle od lat działam społecznie w tematach miasta i dzielnicy oraz opisuję rowerową codzienność i wydarzenia.",
+        deck: "Wpadam na pomysły. Często je realizuję.",
+        lead: "Łączę marketing, wydarzenia i ludzi. Czasem przy biurku. Czasem na rowerze. Najczęściej w Gdyni.",
         ctaPrimary: {
             label: "Zobacz najnowsze wpisy",
             href: "#featured"
@@ -39,11 +39,26 @@ export const siteData = {
             label: "Napisz / zadzwoń",
             href: "#kontakt"
         },
-        heroImage: {
-            src: "/images/hero-portrait.jpg",
-            alt: "Czarno-białe zdjęcie portretowe Pawła Musiała",
-            note: "Podmień na realne zdjęcie (B/W)."
-        },
+        heroSlides: [
+            {
+                src: "/images/hero-portrait.png",
+                alt: "Portret Pawła Musiała",
+                caption: "Paweł Musiał — marketing, miasto, pasje",
+                label: "PORTRET / GDYNIA"
+            },
+            {
+                src: "/images/hero-portrait.png",
+                alt: "Portret Pawła Musiała",
+                caption: "20 lat doświadczenia w komunikacji marek",
+                label: "MARKETING / STRATEGIA"
+            },
+            {
+                src: "/images/hero-portrait.png",
+                alt: "Portret Pawła Musiała",
+                caption: "Aktywista dzielnicy Leszczynki w Gdyni",
+                label: "GDYNIA / SPOŁECZNOŚĆ"
+            }
+        ],
         metaBar: [
             { label: "DZIAŁ", value: "Blog osobisty" },
             { label: "TEMATY", value: "marketing • rower • gdynia" }
@@ -58,28 +73,32 @@ export const siteData = {
                 title: "Budżet Gdyni na 2026 rok",
                 excerpt: "Rada Miasta przyjęła budżet Gdyni na 2026 rok — plan zakłada dochody ok. 2,6 mld zł i wydatki blisko 3 mld zł…",
                 href: "/budzet-gdyni-na-2026-rok/",
-                date: "2026-02-08"
+                date: "2026-02-08",
+                image: "/images/2.png"
             },
             {
                 kicker: "Projekt / WWW",
                 title: "Nowa odsłona rajdarkun.pl",
                 excerpt: "Strona rajdarkun.pl została przebudowana po ośmiu latach funkcjonowania w dotychczasowej formie…",
                 href: "/nowa-odslona-rajdarkun-pl/",
-                date: null
+                date: null,
+                image: "/images/3.png"
             },
             {
                 kicker: "Gdynia / Pomysły",
                 title: "100 lat Gdyni, pomysłów kilka",
                 excerpt: "Wyobraźmy sobie comiesięczne spektakle wyświetlane na wodnej mgiełce, kadłubach statków i ekranach na wodzie…",
                 href: "/100-lat-gdyni-pomyslow-kilka/",
-                date: "2025-12-11"
+                date: "2025-12-11",
+                image: "/images/hero-portrait.png"
             },
             {
                 kicker: "Wydarzenia / ARKUN",
                 title: "Marsz Głuchej Nocy edycja 2025",
                 excerpt: "1 listopada 2025 — 35 kilometrów przez nocne krajobrazy…",
                 href: "/marsz-gluchej-nocy-edycja-2025/",
-                date: "2025-10-14"
+                date: "2025-10-14",
+                image: "/images/2.png"
             }
         ],
         sourcesNote: "Tytuły i fragmenty pochodzą z indeksu wyszukiwarki — do pełnych excerptów warto podmienić tekst po wklejeniu HTML/treści."
@@ -160,11 +179,17 @@ export const siteData = {
     },
     footer: {
         left: "www.musial.me",
-        right: "01"
+        right: "01",
+        social: [
+            { label: "Facebook", href: "https://www.facebook.com/pawel.musial.gdynia", platform: "facebook" },
+            { label: "X", href: "https://x.com/pawelmusial", platform: "x" },
+            { label: "LinkedIn", href: "https://www.linkedin.com/in/pawelmusial/", platform: "linkedin" },
+            { label: "Instagram", href: "https://www.instagram.com/pawel.musial/", platform: "instagram" },
+        ]
     },
     projects: {
         id: "projects",
-        sectionLabel: "Projekty",
+        sectionLabel: "Inicjatywy",
         items: [
             {
                 id: "01",
@@ -222,7 +247,8 @@ export const siteData = {
                 excerpt: "Jak godzić życie zawodowe z pasją? Kluczem jest efektywne planowanie i umiejętność mówienia 'nie' zbędnym zadaniom…",
                 href: "#",
                 date: "2026-02-15",
-                image: "/images/blog-time.jpg"
+                image: "/images/blog-time.jpg",
+                tags: ["Marketing", "Strategia"]
             },
             {
                 kicker: "Gdynia / Rower",
@@ -230,7 +256,8 @@ export const siteData = {
                 excerpt: "Przegląd najciekawszych ścieżek rowerowych w Gdyni i okolicach. Gdzie warto wybrać się na weekendową przejażdżkę?",
                 href: "#",
                 date: "2026-02-10",
-                image: "/images/blog-bike.jpg"
+                image: "/images/blog-bike.jpg",
+                tags: ["Gdynia", "Rower"]
             },
             {
                 kicker: "Marketing / AI",
@@ -238,7 +265,8 @@ export const siteData = {
                 excerpt: "Sztuczna inteligencja zmienia oblicze copywritingu. Jak wykorzystać nowe narzędzia, by nie stracić autentyczności?",
                 href: "#",
                 date: "2026-02-05",
-                image: "/images/blog-ai.jpg"
+                image: "/images/blog-ai.jpg",
+                tags: ["Marketing", "AI"]
             },
             {
                 kicker: "Leszczynki / Społeczeństwo",
@@ -246,7 +274,8 @@ export const siteData = {
                 excerpt: "Mieszkańcy Leszczynek pokazują, jak wspólnymi siłami można zmieniać otoczenie na lepsze. Relacja z ostatniego spotkania rady.",
                 href: "#",
                 date: "2026-01-28",
-                image: "/images/blog-community.jpg"
+                image: "/images/blog-community.jpg",
+                tags: ["Leszczynki", "Gdynia"]
             },
             {
                 kicker: "Podróże / Rower",
@@ -254,7 +283,8 @@ export const siteData = {
                 excerpt: "Relacja z letniej wyprawy rowerowej wzdłuż polskiego wybrzeża. Praktyczne porady, mapa trasy i galeria zdjęć.",
                 href: "#",
                 date: "2025-08-15",
-                image: "/images/blog-sea.jpg"
+                image: "/images/blog-sea.jpg",
+                tags: ["Podróże", "Rower"]
             },
             {
                 kicker: "Design / Branding",
@@ -262,7 +292,35 @@ export const siteData = {
                 excerpt: "Dlaczego proste formy przetrwają próbę czasu? Analiza trendów w brandingu na rok 2026.",
                 href: "#",
                 date: "2025-11-20",
-                image: "/images/blog-design.jpg"
+                image: "/images/blog-design.jpg",
+                tags: ["Design", "Marketing"]
+            },
+            {
+                kicker: "Gdynia / Miasto",
+                title: "Budżet Gdyni na 2026 rok",
+                excerpt: "Rada Miasta przyjęła budżet Gdyni na 2026 rok — plan zakłada dochody ok. 2,6 mld zł i wydatki blisko 3 mld zł. Co z tego wynika dla mieszkańców?",
+                href: "#",
+                date: "2026-02-08",
+                image: "/images/2.png",
+                tags: ["Gdynia", "Polityka"]
+            },
+            {
+                kicker: "Rower / Wydarzenie",
+                title: "Turystyczny Rajd Rowerowy 2025",
+                excerpt: "Malownicze krajobrazy, biwakowa przygoda i kilkaset kilometrów — relacja z sierpniowego rajdu przez Kaszuby i Powiśle.",
+                href: "#",
+                date: "2025-07-10",
+                image: "/images/3.png",
+                tags: ["Rower", "Podróże"]
+            },
+            {
+                kicker: "Leszczynki / Dialog",
+                title: "Darmowa komunikacja dla radnych dzielnic",
+                excerpt: "Od 1 maja radni dzielnicowi w Gdyni mogą bezpłatnie poruszać się komunikacją miejską. Co to zmienia w codziennej pracy rad?",
+                href: "#",
+                date: "2025-05-03",
+                image: "/images/hero-portrait.png",
+                tags: ["Leszczynki", "Gdynia", "Polityka"]
             }
         ]
     }

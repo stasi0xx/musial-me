@@ -2,9 +2,9 @@
 
 import React, { useRef } from 'react';
 import { siteData } from '../app/data';
-import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import HeroSlider from './HeroSlider';
 
 export default function Hero() {
     const { hero } = siteData;
@@ -90,16 +90,8 @@ export default function Hero() {
                     </div>
                 </div>
 
-                {/* Right Column: Image */}
-                <div className="relative aspect-[4/3] lg:aspect-auto lg:h-full min-h-[300px] bg-neutral-200 border-2 border-black flex items-center justify-center overflow-hidden group">
-                    <Image
-                        src={hero.heroImage.src}
-                        alt={hero.heroImage.alt}
-                        fill
-                        className="object-cover grayscale contrast-125"
-                        priority
-                    />
-                </div>
+                {/* Right Column: Slider */}
+                <HeroSlider slides={hero.heroSlides} />
             </div>
         </section>
     );
