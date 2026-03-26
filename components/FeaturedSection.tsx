@@ -1,4 +1,3 @@
-import React from 'react';
 import { siteData } from '../app/data';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -10,7 +9,7 @@ export default function FeaturedSection() {
         <section id={featured.id} className="w-full border-t-4 border-black border-b border-black py-4 mb-12 overflow-x-auto [&::-webkit-scrollbar]:hidden">
             <div className="flex items-center min-w-max">
                 {/* Section Label */}
-                <div className="pr-6 font-serif font-black uppercase tracking-widest text-sm flex-shrink-0">
+                <div className="pr-6 font-serif font-black uppercase tracking-widest text-sm flex-shrink-0 hidden sm:block">
                     {featured.sectionLabel}
                 </div>
 

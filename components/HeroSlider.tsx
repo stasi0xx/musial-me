@@ -24,7 +24,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
     const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
     const captionRefs = useRef<(HTMLDivElement | null)[]>([]);
     const counterRef = useRef<HTMLSpanElement>(null);
-    const autoPlayRef = useRef<ReturnType<typeof setInterval>>();
+    const autoPlayRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
     const isPaused = useRef(false);
 
     // Init: non-active slides sit behind (z:0, rotateY:0) — hidden under active slide

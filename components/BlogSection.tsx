@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { siteData } from '@/app/data';
 import Link from 'next/link';
 
@@ -8,6 +7,10 @@ export default function BlogSection() {
     const { blog } = siteData;
 
     if (!blog) return null;
+
+    const recentPosts = [...blog.items]
+        .sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''))
+        .slice(0, 3);
 
     return (
         <section id="blog" className="py-20 w-full">
@@ -21,7 +24,7 @@ export default function BlogSection() {
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
-                {blog.items.map((post, index) => (
+                {recentPosts.map((post, index) => (
                     <article key={index} className="flex flex-col h-full group relative">
                         {/* Decorative Top Line per article to simulate newspaper columns separation */}
                         <div className="w-full h-[2px] bg-gray-200 mb-4 transition-colors duration-300 group-hover:bg-black"></div>

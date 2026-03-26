@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { siteData } from '@/app/data';
-import Link from 'next/link';
 
 export default function ProjectsStack() {
     // Only one expanded at a time
@@ -32,7 +31,7 @@ export default function ProjectsStack() {
                     return (
                         <article
                             key={project.id}
-                            className="group sticky w-full transition-all duration-300 ease-in-out pt-10 pb-5"
+                            className="group w-full transition-all duration-300 ease-in-out pt-10 pb-5 md:sticky"
                             style={{
                                 top: `${topOffset}px`,
                                 zIndex: index + 10
