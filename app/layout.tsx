@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { Libre_Baskerville } from "next/font/google";
 import "./globals.css";
-import PaperLoader from "@/components/PaperLoader";
-import SmoothScroll from "@/components/SmoothScroll";
-import Masthead from "@/components/Masthead";
-import Footer from "@/components/Footer";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const libreConfigured = Libre_Baskerville({
     weight: ['400', '700'],
@@ -24,16 +21,14 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body
-                className={`${libreConfigured.variable} antialiased`}
-            >
-                <SmoothScroll />
-                <PaperLoader />
-                <Masthead />
-                {children}
-                <Footer />
-            </body>
-        </html>
+        <ClerkProvider>
+            <html lang="en">
+                <body
+                    className={`${libreConfigured.variable} antialiased`}
+                >
+                    {children}
+                </body>
+            </html>
+        </ClerkProvider>
     );
 }

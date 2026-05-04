@@ -1,43 +1,66 @@
-import React from 'react';
+import Image from 'next/image';
+import { db } from '@/lib/db';
+import { aboutSection } from '@/lib/schema';
 
-export const AboutSection = () => {
+export const AboutSection = async () => {
+    const [about] = await db.select().from(aboutSection).limit(1);
+
+    const name = about?.name || 'Paweł Musiał';
+    const role = about?.role || '';
+    const image = about?.image || '';
+
+    const paragraphs = (about?.bio || '')
+        .split(/\n\n|\n/)
+        .map(p => p.trim())
+        .filter(Boolean);
+    const leadParagraph = paragraphs[0] ?? '';
+    const bodyParagraphs = paragraphs.slice(1);
+
     return (
         <section id="about" className="w-full py-20 scroll-mt-28">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 border-t-4 border-black pt-12">
-                {/* Left Column (7/12) - Text Only */}
+                {/* Left Column (7/12) - Text */}
                 <div className="md:col-span-7 flex flex-col gap-8">
                     <header>
                         <span className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">
                             O mnie
                         </span>
                         <h2 className="text-4xl md:text-5xl font-serif font-bold leading-tight mb-4">
-                            Paweł Musiał — marketingowiec i rowerzysta
+                            {name}{role ? ` — ${role}` : ''}
                         </h2>
-                        <p className="text-2xl font-serif leading-relaxed italic text-gray-800">
-                            Od ponad 20 lat pracuję w marketingu — projektuję, tworzę i oceniam komunikację marek.
-                        </p>
+                        {leadParagraph && (
+                            <p className="text-2xl font-serif leading-relaxed italic text-gray-800">
+                                {leadParagraph}
+                            </p>
+                        )}
                     </header>
 
-                    <div className="prose prose-xl text-gray-900 font-serif leading-relaxed">
-                        <p className='text-2xl'>
-                            Równolegle od lat działam społecznie w tematach miasta i dzielnicy. Interesuje mnie to, co w praktyce działa: dobre decyzje, mądre procesy i uczciwy dialog.
-                        </p>
-                        <p className='text-2xl'>
-                            Na musial.me zapisuję obserwacje z pracy, działania lokalne oraz rowerową codzienność i wydarzenia — możliwie konkretnie, bez nadęcia.
-                        </p>
-                    </div>
+                    {bodyParagraphs.length > 0 && (
+                        <div className="prose prose-xl text-gray-900 font-serif leading-relaxed">
+                            {bodyParagraphs.map((p, i) => (
+                                <p key={i} className="text-2xl">{p}</p>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
-                {/* Right Column (5/12) - Profile Card with Round Photo */}
+                {/* Right Column (5/12) - Profile Card */}
                 <div className="md:col-span-5">
                     <div className="bg-gray-50 border-2 border-black p-8 flex flex-col items-center text-center sticky top-24">
 
-                        {/* Round Photo */}
                         <div className="w-40 h-40 rounded-full border-2 border-black bg-gray-200 mb-6 overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-300 shadow-md">
-                            <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-[10px] uppercase font-bold">
-                                [FOTO]
-                            </div>
-                            {/* <img src="/images/pawel-portrait.jpg" alt="Paweł Musiał" className="w-full h-full object-cover" /> */}
+                            {image ? (
+                                <Image
+                                    src={image}
+                                    alt={name}
+                                    fill
+                                    className="object-cover"
+                                />
+                            ) : (
+                                <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-[10px] uppercase font-bold">
+                                    [FOTO]
+                                </div>
+                            )}
                         </div>
 
                         <h3 className="font-sans font-bold text-sm uppercase tracking-widest mb-6 border-b border-black pb-2 inline-block">
