@@ -24,7 +24,7 @@ export default function FeaturedSection({ posts }: Props) {
                 {/* Horizontal List of Items */}
                 <div className="flex items-center divide-x divide-gray-300">
                     {posts.slice(0, 3).map((post) => (
-                        <Link href={post.href || '#'} key={post.id} className="group flex flex-col min-w-[200px] hover:bg-neutral-100 transition-colors overflow-hidden">
+                        <Link href={post.href ? `/blog/${post.href}` : `/blog/${post.id}`} key={post.id} className="group flex flex-col min-w-[200px] hover:bg-neutral-100 transition-colors overflow-hidden">
                             {post.image && (
                                 <div className="relative w-[90%] h-28 overflow-hidden">
                                     <Image src={post.image} alt={post.title} fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300" />

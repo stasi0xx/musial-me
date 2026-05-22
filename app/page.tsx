@@ -7,13 +7,13 @@ import EditorialColumns from '../components/EditorialColumns';
 import ContactSection from '../components/ContactSection';
 import PublicShell from '../components/PublicShell';
 import { db } from '@/lib/db';
-import { blogPosts, initiatives } from '@/lib/schema';
+import { blogPosts, initiatives, heroSlides } from '@/lib/schema';
 import { eq, and, asc, desc } from 'drizzle-orm';
 
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-    const [initiativesList, featuredPosts, homeBlogPosts] = await Promise.all([
+    const [initiativesList, featuredPosts, homeBlogPosts, heroSlidesList] = await Promise.all([
         db.select().from(initiatives)
             .where(eq(initiatives.isActive, true))
             .orderBy(asc(initiatives.sortOrder)),
@@ -23,12 +23,15 @@ export default async function Home() {
             .where(and(eq(blogPosts.showInBlogSection, true), eq(blogPosts.isPublished, true)))
             .orderBy(desc(blogPosts.date))
             .limit(3),
+        db.select().from(heroSlides)
+            .where(eq(heroSlides.isActive, true))
+            .orderBy(asc(heroSlides.sortOrder)),
     ]);
 
     return (
         <PublicShell>
             <main className="min-h-screen p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto flex flex-col gap-8">
-                <Hero />
+                <Hero slides={heroSlidesList} />
                 <FeaturedSection posts={featuredPosts} />
                 <ProjectsStack initiatives={initiativesList} />
                 <BlogSection posts={homeBlogPosts} />

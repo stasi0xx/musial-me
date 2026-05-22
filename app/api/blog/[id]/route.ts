@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { db } from '@/lib/db';
 import { blogPosts } from '@/lib/schema';
+import { toSlug } from '@/lib/slug';
 import { eq } from 'drizzle-orm';
 
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
@@ -24,7 +25,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       title: body.title,
       excerpt: body.excerpt,
       content: body.content,
-      href: body.href,
+      href: toSlug(body.href ?? body.title ?? ''),
       date: body.date,
       image: body.image,
       tags: body.tags,

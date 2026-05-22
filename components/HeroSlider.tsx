@@ -5,7 +5,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 
 interface Slide {
-    src: string;
+    image: string;
     alt: string;
     caption: string;
     label: string;
@@ -162,7 +162,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                     style={{ backfaceVisibility: 'hidden' }}
                 >
                     <Image
-                        src={slide.src}
+                        src={slide.image}
                         alt={slide.alt}
                         fill
                         className="object-cover grayscale contrast-125"

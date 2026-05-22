@@ -29,6 +29,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               >
                 O mnie
               </Link>
+              <Link
+                href="/admin/hero"
+                className="font-sans text-[11px] uppercase tracking-[0.2em] font-bold hover:underline underline-offset-4"
+              >
+                Hero
+              </Link>
             </nav>
           </div>
           <div className="flex items-center gap-5">

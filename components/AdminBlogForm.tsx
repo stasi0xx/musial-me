@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import type { BlogPost } from '@/lib/schema';
 import RichTextEditor from '@/components/RichTextEditor';
+import { toSlug } from '@/lib/slug';
 
 interface Props {
   post?: BlogPost;
@@ -19,6 +20,7 @@ export default function AdminBlogForm({ post }: Props) {
   const [error, setError] = useState('');
   const [uploading, setUploading] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
+  const slugEditedRef = useRef(Boolean(post?.href));
 
   const [fields, setFields] = useState({
     kicker: post?.kicker ?? '',
@@ -36,6 +38,18 @@ export default function AdminBlogForm({ post }: Props) {
 
   function set(key: keyof typeof fields, value: string | boolean) {
     setFields(prev => ({ ...prev, [key]: value }));
+  }
+
+  function handleTitleChange(value: string) {
+    set('title', value);
+    if (!slugEditedRef.current) {
+      set('href', toSlug(value));
+    }
+  }
+
+  function handleSlugChange(value: string) {
+    slugEditedRef.current = true;
+    set('href', toSlug(value));
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -89,7 +103,7 @@ export default function AdminBlogForm({ post }: Props) {
             type="text"
             required
             value={fields.title}
-            onChange={e => set('title', e.target.value)}
+            onChange={e => handleTitleChange(e.target.value)}
             placeholder="Tytuł wpisu"
             className={FIELD_CLASS}
           />
@@ -120,14 +134,20 @@ export default function AdminBlogForm({ post }: Props) {
         <div className="border border-black/10 p-5 flex flex-col gap-5">
 
           <div>
-            <label className={LABEL_CLASS}>URL / Slug</label>
-            <input
-              type="text"
-              value={fields.href}
-              onChange={e => set('href', e.target.value)}
-              placeholder="/tytul-wpisu"
-              className={FIELD_CLASS}
-            />
+            <label className={LABEL_CLASS}>Slug (URL)</label>
+            <div className="flex items-center border border-black/20 focus-within:border-black transition-colors">
+              <span className="font-mono text-[11px] text-gray-400 pl-3 select-none whitespace-nowrap">/blog/</span>
+              <input
+                type="text"
+                value={fields.href}
+                onChange={e => handleSlugChange(e.target.value)}
+                placeholder="tytul-wpisu"
+                className="flex-1 bg-transparent font-mono text-sm px-2 py-2 focus:outline-none"
+              />
+            </div>
+            <p className="font-sans text-[10px] text-gray-400 mt-1">
+              Generowany automatycznie z tytułu — możesz edytować ręcznie
+            </p>
           </div>
 
           <div>

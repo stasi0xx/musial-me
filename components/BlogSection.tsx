@@ -57,7 +57,7 @@ export default function BlogSection({ posts }: Props) {
                         </div>
 
                         <h3 className="font-serif text-2xl lg:text-3xl font-bold leading-[1.1] mb-5 group-hover:text-gray-800">
-                            <Link href={post.href || '#'} className="block group-hover:underline decoration-2 underline-offset-4">
+                            <Link href={post.href ? `/blog/${post.href}` : `/blog/${post.id}`} className="block group-hover:underline decoration-2 underline-offset-4">
                                 {post.title}
                             </Link>
                         </h3>
@@ -67,7 +67,7 @@ export default function BlogSection({ posts }: Props) {
                         </p>
 
                         <div className="mt-auto pt-4 border-t border-dotted border-gray-300">
-                            <Link href={post.href || '#'} className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold hover:text-gray-600 transition-colors">
+                            <Link href={post.href ? `/blog/${post.href}` : `/blog/${post.id}`} className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold hover:text-gray-600 transition-colors">
                                 Czytaj całość <span className="text-base leading-none">→</span>
                             </Link>
                         </div>

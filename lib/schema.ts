@@ -43,8 +43,22 @@ export const aboutSection = pgTable('about_section', {
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
 
+export const heroSlides = pgTable('hero_slides', {
+  id: serial('id').primaryKey(),
+  sortOrder: integer('sort_order').notNull().default(0),
+  image: text('image').notNull().default(''),
+  alt: text('alt').notNull().default(''),
+  caption: text('caption').notNull().default(''),
+  label: text('label').notNull().default(''),
+  isActive: boolean('is_active').notNull().default(true),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+});
+
 export type BlogPost = typeof blogPosts.$inferSelect;
 export type NewBlogPost = typeof blogPosts.$inferInsert;
 export type Initiative = typeof initiatives.$inferSelect;
 export type NewInitiative = typeof initiatives.$inferInsert;
 export type AboutSection = typeof aboutSection.$inferSelect;
+export type HeroSlide = typeof heroSlides.$inferSelect;
+export type NewHeroSlide = typeof heroSlides.$inferInsert;
