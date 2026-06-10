@@ -8,16 +8,17 @@ Przewodnik dla Claude Code. Przeczytaj ten plik przed każdą zmianą.
 
 Osobista strona portfolio **Pawła Musiała** — marketingowca, rowerzysty i aktywisty miejskiego z Gdyni. Strona ma charakter **editorialny, gazetowy**, prezentuje projekty, artykuły i działalność publiczną. Wszystkie treści i interfejs są **po polsku**.
 
-**Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · GSAP 3
+**Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · GSAP 3 · Drizzle ORM + Neon (Postgres) · Clerk (auth panelu admina) · Cloudinary (upload zdjęć)
+
+Strona ma **panel admina** (`/admin`) chroniony logowaniem Clerk, w którym właściciel zarządza treściami (blog, inicjatywy, hero, sekcja "o mnie") — dane trafiają do bazy Neon przez Drizzle i są renderowane na stronie głównej.
 
 ---
 
 ## Zasady ogólne
 
-- **Treści tylko z `app/data.ts`** — żadnych hardcodowanych tekstów w komponentach. Każda nowa sekcja musi mieć odpowiadający wpis w `data.ts`.
+- **Treści dynamiczne (blog, inicjatywy, hero slides, "o mnie") z bazy danych** przez `lib/schema.ts` (Drizzle) — edytowalne w `/admin`. **Treści statyczne / konfiguracyjne** (nazwa marki, nawigacja, kontakt, dane masthead) z `app/data.ts`. Żadnych hardcodowanych tekstów w komponentach prezentacyjnych.
 - **Kod po angielsku, treści po polsku** — nazwy zmiennych, komponenty, komentarze w kodzie: angielski. Teksty widoczne użytkownikowi: polski.
-- **Brak backendów** — strona jest w pełni statyczna. Nie dodawaj API routes, baz danych ani server actions.
-- **Deploy na tradycyjnym serwerze** — nie zakładaj Vercel-specific features (Edge Runtime, ISR, itp.). Używaj `next build` + `next start` lub static export jeśli to możliwe.
+- **Backend istnieje** — API routes (`app/api/*`), baza Postgres (Neon) przez Drizzle, auth przez Clerk. Strona główna (`app/page.tsx`) ma `export const dynamic = 'force-dynamic'` i pobiera dane z bazy.
 - **Sprawdzaj TypeScript** — przed zaproponowaniem zmian upewnij się, że kod jest poprawny typowo. Nie używaj `any`.
 
 ---
@@ -26,16 +27,23 @@ Osobista strona portfolio **Pawła Musiała** — marketingowca, rowerzysty i ak
 
 ```
 app/
-  data.ts          ← JEDYNE źródło treści i konfiguracji
-  layout.tsx       ← Root layout: fonty, PaperLoader, SmoothScroll, Masthead
-  page.tsx         ← Kompozycja sekcji strony głównej
+  data.ts          ← Statyczna konfiguracja: brand, navigation, masthead, kontakt
+  layout.tsx       ← Root layout: ClerkProvider, fonty, PaperLoader, SmoothScroll, Masthead
+  page.tsx         ← Kompozycja sekcji strony głównej, fetch danych z bazy (Drizzle)
   globals.css      ← Tailwind v4 + custom theme + paper texture
+  admin/           ← Panel admina (chroniony przez Clerk middleware): blog, hero, initiatives, about
+  api/             ← Route handlery REST: blog, hero-slides, initiatives, about, upload (Cloudinary)
 
-components/        ← Wszystkie komponenty trafiają tutaj, bez podfolderów
+lib/
+  schema.ts        ← Schemat Drizzle (blogPosts, initiatives, heroSlides, aboutSection) + typy
+  db.ts            ← Połączenie z bazą Neon
+
+components/        ← Wszystkie komponenty trafiają tutaj, bez podfolderów (poza admin)
 public/images/     ← Zdjęcia i grafiki
+middleware.ts      ← clerkMiddleware, chroni /admin przez ADMIN_USER_ID
 ```
 
-**Nie twórz** podfolderów w `components/`, plików `utils/`, `hooks/`, `lib/` — chyba że jest to absolutnie niezbędne i nie da się tego zrobić inaczej.
+**Nie twórz** podfolderów w `components/`, chyba że jest to absolutnie niezbędne i nie da się tego zrobić inaczej.
 
 ---
 
@@ -102,7 +110,9 @@ export default function NazwaKomponentu({ ... }: Props) {
 
 ### Dane
 
-Zawsze importuj dane z `@/app/data`. Rozszerzaj typy i tablice w `data.ts` gdy potrzebujesz nowych treści. Nie przyjmuj danych jako props jeśli sekcja jest singleton (jedna na stronie).
+- **Statyczna konfiguracja** (brand, navigation, masthead, kontakt) → `@/app/data` (`siteData`).
+- **Treści edytowalne przez admina** (blog, inicjatywy, hero slides, "o mnie") → tabele Drizzle w `lib/schema.ts`, pobierane w Server Components (np. `app/page.tsx`) i przekazywane do komponentów jako props.
+- Komponenty prezentacyjne (sekcje na stronie głównej) powinny przyjmować dane jako **props** typowane na podstawie typów z `lib/schema.ts` (`BlogPost`, `Initiative`, `HeroSlide`, `AboutSection`), a nie odwoływać się do bazy bezpośrednio.
 
 ---
 
@@ -182,27 +192,21 @@ Każda nowa sekcja powinna mieć `id` zgodny z linkami w nawigacji Masthead, np.
 
 ---
 
-## Rozszerzanie `data.ts`
+## Rozszerzanie treści
 
-Przy dodawaniu nowej sekcji:
-
+### Statyczna konfiguracja (`app/data.ts`)
+Dla treści, które nie są edytowalne przez admina (nawigacja, branding, kontakt):
 1. Zdefiniuj interfejs TypeScript dla danych sekcji
 2. Dodaj dane do obiektu `siteData` (lub jako oddzielny eksport jeśli duże)
 3. Zaimportuj w komponencie przez `import { siteData } from "@/app/data"`
 
-Przykładowy wzorzec:
-```ts
-// W data.ts
-export interface NowaSekcjaItem {
-  id: string;
-  tytul: string;
-  opis: string;
-}
-
-export const nowaSekcjaData: NowaSekcjaItem[] = [
-  { id: "1", tytul: "...", opis: "..." },
-];
-```
+### Treści z bazy danych (Drizzle / Neon)
+Dla nowych sekcji edytowalnych w panelu admina:
+1. Dodaj tabelę i typy w `lib/schema.ts`
+2. Wygeneruj i wypchnij migrację: `npm run db:generate` → `npm run db:push`
+3. Dodaj route handler w `app/api/<sekcja>/route.ts` (CRUD)
+4. Dodaj widoki w `app/admin/<sekcja>/` (lista, nowy, edycja)
+5. Pobierz dane w `app/page.tsx` (Server Component, Drizzle `db.select()`) i przekaż jako props do komponentu sekcji
 
 ---
 
@@ -210,8 +214,10 @@ export const nowaSekcjaData: NowaSekcjaItem[] = [
 
 - **Testowanie:** głównie `npm run dev` — nie wymaga buildu przy każdej zmianie
 - **Przed większymi zmianami:** warto uruchomić `tsc --noEmit` żeby wychwycić błędy typów
+- **Zmiany w schemacie bazy:** `npm run db:generate` (migracja) → `npm run db:push` (zastosowanie); `npm run db:studio` do podglądu danych
 - **Build:** `npm run build` przed deployem na serwer
 - **Linting:** `npm run lint`
+- **Zmienne środowiskowe** (`.env`, niewersjonowane): `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, `CLERK_SECRET_KEY`, `DATABASE_URL`, `CLOUDINARY_*`, `ADMIN_USER_ID`. Przed deployem produkcyjnym zamień klucze Clerk z `pk_test_*` / `sk_test_*` na produkcyjne (`pk_live_*` / `sk_live_*`).
 
 ---
 
@@ -221,9 +227,10 @@ export const nowaSekcjaData: NowaSekcjaItem[] = [
 - Nie twórz plików `*.test.ts` / `*.spec.ts` — projekt nie ma środowiska testowego
 - Nie używaj `console.log` w kodzie produkcyjnym
 - Nie dodawaj `// TODO` / `// FIXME` bez ich rozwiązania
-- Nie hardcoduj treści polskich w komponentach — zawsze przez `data.ts`
+- Nie hardcoduj treści polskich w komponentach prezentacyjnych — statyka przez `data.ts`, treści dynamiczne przez props z bazy
 - Nie używaj `<img>` — zawsze `<Image>` z `next/image`
-- Nie zakładaj Vercel (brak ISR, Edge Runtime, itp.)
+- Nie zakładaj Vercel (brak ISR, Edge Runtime, itp.) — `app/page.tsx` jest `force-dynamic`, deploy na `next build` + `next start`
+- Nie commituj `.env` ani kluczy Clerk/Cloudinary/DATABASE_URL
 - Nie refaktoryzuj kodu którego nie dotyczysz — zmieniaj tylko to co potrzeba
 
 ---

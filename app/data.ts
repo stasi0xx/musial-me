@@ -12,7 +12,8 @@ export const siteData = {
         navigation: [
             { label: "O mnie", href: "/#about" },
             { label: "Blog", href: "/blog" },
-            { label: "Inicjatywy", href: "/#initiatives" }
+            { label: "Inicjatywy", href: "/#initiatives" },
+            { label: "Kontakt", href: "/#kontakt" }
         ]
     },
     masthead: {

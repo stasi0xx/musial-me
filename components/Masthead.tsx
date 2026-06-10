@@ -72,13 +72,6 @@ export default function Masthead() {
                             {item.label}
                         </Link>
                     ))}
-                    <a
-                        href={`mailto:${siteData.site.contact.email}`}
-                        onClick={() => setMenuOpen(false)}
-                        className="text-sm uppercase tracking-[0.15em] font-medium px-4 py-4 hover:bg-black hover:text-[#f7f5ef] transition-colors duration-200"
-                    >
-                        {siteData.site.contact.email}
-                    </a>
                 </nav>
             </div>
         </header>

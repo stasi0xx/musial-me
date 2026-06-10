@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -Command \"\\(Get-Content components/ProjectsStack.tsx -Raw\\) -replace 'text-gray-500 font-bold', 'text-black font-bold' | Set-Content -NoNewline components/ProjectsStack.tsx\")"
+    ]
+  }
+}
