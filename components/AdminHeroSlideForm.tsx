@@ -4,6 +4,7 @@ import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import type { HeroSlide } from '@/lib/schema';
+import MediaPicker from '@/components/MediaPicker';
 
 interface Props {
   slide?: HeroSlide;
@@ -17,6 +18,7 @@ export default function AdminHeroSlideForm({ slide }: Props) {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const [uploading, setUploading] = useState(false);
+  const [mediaPickerOpen, setMediaPickerOpen] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const [fields, setFields] = useState({
@@ -126,14 +128,28 @@ export default function AdminHeroSlideForm({ slide }: Props) {
                 setUploading(false);
               }}
             />
-            <button
-              type="button"
-              disabled={uploading}
-              onClick={() => fileRef.current?.click()}
-              className="w-full border border-black/20 font-sans text-[11px] uppercase tracking-[0.2em] py-2 hover:border-black transition-colors disabled:opacity-50"
-            >
-              {uploading ? 'Wysyłanie…' : fields.image ? 'Zmień zdjęcie' : 'Wybierz zdjęcie'}
-            </button>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                disabled={uploading}
+                onClick={() => fileRef.current?.click()}
+                className="flex-1 border border-black/20 font-sans text-[11px] uppercase tracking-[0.2em] py-2 hover:border-black transition-colors disabled:opacity-50"
+              >
+                {uploading ? 'Wysyłanie…' : 'Wgraj nowe'}
+              </button>
+              <button
+                type="button"
+                onClick={() => setMediaPickerOpen(true)}
+                className="flex-1 border border-black/20 font-sans text-[11px] uppercase tracking-[0.2em] py-2 hover:border-black transition-colors"
+              >
+                Z biblioteki
+              </button>
+            </div>
+            <MediaPicker
+              open={mediaPickerOpen}
+              onClose={() => setMediaPickerOpen(false)}
+              onSelect={url => set('image', url)}
+            />
             {fields.image && (
               <input
                 type="text"

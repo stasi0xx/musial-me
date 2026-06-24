@@ -69,9 +69,15 @@
 .prose-editorial p {
   margin: 0 0 1.6rem;
 }
-.prose-editorial ul,
+.prose-editorial ul {
+  margin: 0 0 1.6rem 1.5rem;
+  list-style-type: disc;
+  padding-left: 0.5rem;
+}
 .prose-editorial ol {
   margin: 0 0 1.6rem 1.5rem;
+  list-style-type: decimal;
+  padding-left: 0.5rem;
 }
 .prose-editorial li {
   margin-bottom: 0.4rem;

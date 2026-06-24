@@ -182,10 +182,10 @@ export const siteData = {
         left: "www.musial.me",
         right: "01",
         social: [
-            { label: "Facebook", href: "https://www.facebook.com/pawel.musial.gdynia", platform: "facebook" },
-            { label: "X", href: "https://x.com/pawelmusial", platform: "x" },
-            { label: "LinkedIn", href: "https://www.linkedin.com/in/pawelmusial/", platform: "linkedin" },
-            { label: "Instagram", href: "https://www.instagram.com/pawel.musial/", platform: "instagram" },
+            { label: "Facebook", href: "https://www.facebook.com/musialchcialczyniechcial", platform: "facebook" },
+            { label: "X", href: "https://x.com/PawelFly", platform: "x" },
+            { label: "LinkedIn", href: "https://www.linkedin.com/in/pawel-musial/", platform: "linkedin" },
+            { label: "Instagram", href: "https://www.instagram.com/fly_fotografie/", platform: "instagram" },
         ]
     },
     projects: {

@@ -159,7 +159,7 @@ export default function ProjectsStack({ initiatives }: Props) {
         setModalProject(project);
     };
 
-    const sortedInitiatives = [...initiatives].sort((a, b) => a.id - b.id);
+    const sortedInitiatives = [...initiatives].sort((a, b) => a.sortOrder - b.sortOrder);
 
     return (
         <>

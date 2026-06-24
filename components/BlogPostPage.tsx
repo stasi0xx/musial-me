@@ -15,6 +15,12 @@ interface Props {
   recentPosts: BlogPost[];
 }
 
+function stripEmptyListItems(html: string): string {
+  return html
+    .replace(/<li>\s*<p>\s*(<br\s*\/?>)?\s*<\/p>\s*<\/li>/gi, "")
+    .replace(/<li>\s*(<br\s*\/?>)?\s*<\/li>/gi, "");
+}
+
 function formatDate(dateStr: string): string {
   return new Intl.DateTimeFormat("pl-PL", {
     day: "numeric",
@@ -146,7 +152,7 @@ export default function BlogPostPage({ post, recentPosts }: Props) {
         {post.content ? (
           <div
             className="prose-editorial"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: stripEmptyListItems(post.content) }}
           />
         ) : (
           <p className="font-serif text-lg leading-relaxed text-gray-700">{post.excerpt}</p>
