@@ -5,7 +5,12 @@
       "PowerShell(Get-NetTCPConnection -LocalPort 3000,3001,3002,3003 -State Listen -ErrorAction SilentlyContinue | Select-Object LocalPort, OwningProcess | ForEach-Object { $proc = Get-Process -Id $_.OwningProcess -ErrorAction SilentlyContinue; [PSCustomObject]@{Port=$_.LocalPort; PID=$_.OwningProcess; Name=$proc.ProcessName} })",
       "WebFetch(domain:esencja.net)",
       "Bash(ls \"C:\\\\Users\\\\stani\\\\Desktop\\\\projects\\\\testowy-projekt\")",
-      "Read(//c/Users/stani/Desktop/projects/testowy-projekt/**)"
+      "Read(//c/Users/stani/Desktop/projects/testowy-projekt/**)",
+      "Bash(where magick *)",
+      "Bash(where convert *)",
+      "Bash(where ffmpeg *)",
+      "Bash(node -e \"try { require\\('sharp'\\); console.log\\('sharp-available'\\); } catch\\(e\\) { console.log\\('no-sharp'\\); }\")",
+      "Bash(node -e ' *)"
     ]
   }
 }
