@@ -133,22 +133,8 @@ export default function BlogPostPage({ post, recentPosts }: Props) {
         </div>
       )}
 
-      {/* Content + tags */}
-      <div ref={contentRef} className="px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto mb-20">
-        {post.tags && post.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-10 pb-8 border-b border-black/10">
-            {post.tags.map((tag) => (
-              <Link
-                key={tag}
-                href={`/blog`}
-                className="font-sans text-[9px] uppercase tracking-[0.15em] px-3 py-1 border border-black/20 hover:border-black hover:bg-black hover:text-[#f7f5ef] transition-colors duration-150"
-              >
-                {tag}
-              </Link>
-            ))}
-          </div>
-        )}
-
+      {/* Content */}
+      <div ref={contentRef} className="px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto mb-10">
         {post.content ? (
           <div
             className="prose-editorial"
@@ -158,6 +144,23 @@ export default function BlogPostPage({ post, recentPosts }: Props) {
           <p className="font-serif text-lg leading-relaxed text-gray-700">{post.excerpt}</p>
         )}
       </div>
+
+      {/* Tags */}
+      {post.tags && post.tags.length > 0 && (
+        <div className="px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto mb-20">
+          <div className="flex flex-wrap gap-2 pt-8 border-t border-black/10">
+            {post.tags.map((tag) => (
+              <Link
+                key={tag}
+                href="/blog"
+                className="font-sans text-[9px] uppercase tracking-[0.15em] px-3 py-1 border border-black/20 hover:border-black hover:bg-black hover:text-[#f7f5ef] transition-colors duration-150"
+              >
+                {tag}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Recent posts */}
       {recentPosts.length > 0 && (

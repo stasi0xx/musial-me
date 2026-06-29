@@ -1,0 +1,196 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e3]:
+      - link "Nexa Projects logo" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Nexa Projects logo" [ref=e5]
+      - generic [ref=e6]:
+        - link "O NAS" [ref=e7] [cursor=pointer]:
+          - /url: /#about
+        - link "USŁUGI" [ref=e8] [cursor=pointer]:
+          - /url: /#services
+        - link "REALIZACJE" [ref=e9] [cursor=pointer]:
+          - /url: /#projects
+        - link "OPINIE" [ref=e10] [cursor=pointer]:
+          - /url: /#testimonials
+        - link "KONTAKT" [ref=e11] [cursor=pointer]:
+          - /url: /#contact
+      - link "KONSULTACJA +" [ref=e12] [cursor=pointer]:
+        - /url: /#contact
+        - text: KONSULTACJA
+        - generic [ref=e13]: +
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - heading "TWOJE CELE NASZA REALIZACJA" [level=1] [ref=e16]:
+          - text: TWOJE CELE
+          - text: NASZA REALIZACJA
+        - generic [ref=e17]:
+          - generic [ref=e18]: NA RYNKU OD 2014
+          - paragraph [ref=e19]: Kompleksowa obsługa nieruchomości i wydarzeń — od zarządzania, przez pośrednictwo, po organizację eventów.
+      - generic [ref=e20]:
+        - generic [ref=e21]: ZARZĄDZANIE NIERUCHOMOŚCIAMI · POŚREDNICTWO · ORGANIZACJA EVENTÓW
+        - link "UMÓW SPOTKANIE →" [ref=e22] [cursor=pointer]:
+          - /url: "#contact"
+          - text: UMÓW SPOTKANIE
+          - generic [ref=e23]: →
+    - generic [ref=e24]:
+      - img "Nowoczesne biuro NEXA Projects" [ref=e25]
+      - generic [ref=e27]: NEXA
+    - generic [ref=e28]:
+      - generic [ref=e29]: + NEXA W LICZBACH
+      - generic [ref=e30]:
+        - generic [ref=e31]: 240+
+        - generic [ref=e32]: Zarządzanych nieruchomości
+      - generic [ref=e33]:
+        - generic [ref=e34]: 130+
+        - generic [ref=e35]: Zrealizowanych eventów
+      - generic [ref=e36]:
+        - generic [ref=e37]: 98%
+        - generic [ref=e38]: Zadowolonych klientów
+      - generic [ref=e39]:
+        - generic [ref=e40]: "2014"
+        - generic [ref=e41]: Na rynku od
+    - generic [ref=e42]:
+      - generic [ref=e43]: + ZAKRES USŁUG
+      - heading "Trzy kompetencje, jeden partner" [level=2] [ref=e44]
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - img [ref=e47]
+          - generic [ref=e50]: ZARZĄDZANIE NIERUCHOMOŚCIAMI
+          - paragraph [ref=e51]: Pełna obsługa administracyjna, techniczna i finansowa Twoich nieruchomości — bez angażowania Twojego czasu.
+          - link "WIĘCEJ +" [ref=e52] [cursor=pointer]:
+            - /url: /zarzadzanie-nieruchomosciami
+        - generic [ref=e53]:
+          - img [ref=e54]
+          - generic [ref=e58]: POŚREDNICTWO NIERUCHOMOŚCI
+          - paragraph [ref=e59]: Sprzedaż i wynajem z pełnym wsparciem — wycena, marketing, negocjacje i bezpieczna finalizacja transakcji.
+          - link "WIĘCEJ +" [ref=e60] [cursor=pointer]:
+            - /url: /posrednictwo-nieruchomosci
+        - generic [ref=e61]:
+          - img [ref=e62]
+          - generic [ref=e67]: ORGANIZACJA EWENTÓW
+          - paragraph [ref=e68]: Wydarzenia firmowe i prywatne dopięte na ostatni guzik — koncepcja, scenografia, technika i koordynacja.
+          - link "WIĘCEJ +" [ref=e69] [cursor=pointer]:
+            - /url: /organizacja-eventow
+    - generic [ref=e70]:
+      - generic [ref=e71]:
+        - generic [ref=e72]:
+          - generic [ref=e73]: + WYBRANE REALIZACJE
+          - heading "Projekty, które mówią same za siebie" [level=2] [ref=e74]
+        - generic [ref=e75] [cursor=pointer]: ZOBACZ WSZYSTKIE →
+      - generic [ref=e76]:
+        - generic [ref=e77]:
+          - generic [ref=e79]: "[ apartament premium — salon ]"
+          - generic [ref=e80]:
+            - generic [ref=e81]: Apartamenty Riverside
+            - generic [ref=e82]: ZARZĄDZANIE
+        - generic [ref=e83]:
+          - generic [ref=e85]: "[ event — gala wieczorowa ]"
+          - generic [ref=e86]:
+            - generic [ref=e87]: Gala Nexa 2025
+            - generic [ref=e88]: EVENT
+        - generic [ref=e89]:
+          - generic [ref=e91]: "[ dom — elewacja frontowa ]"
+          - generic [ref=e92]:
+            - generic [ref=e93]: Dom pod Lasem
+            - generic [ref=e94]: SPRZEDAŻ
+    - generic [ref=e95]:
+      - generic [ref=e96]: + OPINIE KLIENTÓW
+      - heading "Zaufanie, które wraca" [level=2] [ref=e97]
+      - generic [ref=e98]:
+        - generic [ref=e99]:
+          - paragraph [ref=e100]: „Przekazaliśmy NEXA zarządzanie trzema kamienicami. Pełna transparentność i święty spokój — dokładnie to, czego szukaliśmy.”
+          - generic [ref=e103]:
+            - generic [ref=e104]: Tomasz K.
+            - generic [ref=e105]: Właściciel nieruchomości
+        - generic [ref=e106]:
+          - paragraph [ref=e107]: „Organizacja konferencji dla 300 osób od A do Z. Profesjonalizm na każdym etapie, zero stresu po naszej stronie.”
+          - generic [ref=e110]:
+            - generic [ref=e111]: Anna W.
+            - generic [ref=e112]: Dyrektor marketingu
+    - generic [ref=e113]:
+      - generic [ref=e114]: + ZAUFALI NAM
+      - generic [ref=e115]:
+        - generic [ref=e116]: "[ LOGO ]"
+        - generic [ref=e117]: "[ LOGO ]"
+        - generic [ref=e118]: "[ LOGO ]"
+        - generic [ref=e119]: "[ LOGO ]"
+        - generic [ref=e120]: "[ LOGO ]"
+    - generic [ref=e122]:
+      - generic [ref=e123]:
+        - generic [ref=e124]: + FAQ
+        - heading "Najczęściej zadawane pytania" [level=2] [ref=e125]
+      - generic [ref=e126]:
+        - group [ref=e127]:
+          - generic "Na czym polega zarządzanie nieruchomością? +" [ref=e128] [cursor=pointer]:
+            - generic [ref=e129]: Na czym polega zarządzanie nieruchomością?
+            - generic [ref=e130]: +
+          - paragraph [ref=e131]: Przejmujemy pełną obsługę administracyjną, techniczną i finansową — od rozliczeń i kontaktu z najemcami, po nadzór nad konserwacją i raportowanie.
+        - group [ref=e132]:
+          - generic "Jak wygląda współpraca przy sprzedaży? +" [ref=e133] [cursor=pointer]:
+            - generic [ref=e134]: Jak wygląda współpraca przy sprzedaży?
+            - generic [ref=e135]: +
+        - group [ref=e137]:
+          - generic "Jakie eventy organizujecie? +" [ref=e138] [cursor=pointer]:
+            - generic [ref=e139]: Jakie eventy organizujecie?
+            - generic [ref=e140]: +
+    - generic [ref=e142]:
+      - generic [ref=e143]:
+        - generic [ref=e144]: + KONTAKT
+        - heading "Masz projekt? Porozmawiajmy." [level=2] [ref=e145]:
+          - text: Masz projekt?
+          - text: Porozmawiajmy.
+        - generic [ref=e146]:
+          - textbox "Imię i nazwisko" [ref=e147]
+          - textbox "Telefon" [ref=e148]
+          - textbox "Adres e-mail" [ref=e149]
+          - textbox "Twoja wiadomość" [ref=e150]
+          - button "WYŚLIJ ZAPYTANIE →" [ref=e152] [cursor=pointer]:
+            - text: WYŚLIJ ZAPYTANIE
+            - generic [ref=e153]: →
+      - generic [ref=e154]:
+        - generic [ref=e155]: DANE FIRMY
+        - generic [ref=e156]: NEXA PROJECTS
+        - generic [ref=e157]: Marta Miarowska
+        - generic [ref=e158]:
+          - generic [ref=e159]: tel. 506 078 772
+          - generic [ref=e160]: biuro@nexaprojects.pl
+          - generic [ref=e161]:
+            - text: ul. Przykładowa 12/4
+            - text: 00-001 Warszawa
+          - generic [ref=e162]: NIP 000-00-00-000
+    - contentinfo [ref=e163]:
+      - generic [ref=e164]:
+        - generic [ref=e165]:
+          - generic [ref=e166]:
+            - generic [ref=e168]: "N"
+            - generic [ref=e170]: NEXA
+          - paragraph [ref=e171]: Twoje cele — nasza realizacja. Nieruchomości i eventy w jednym miejscu.
+        - generic [ref=e172]:
+          - generic [ref=e173]: NAWIGACJA
+          - link "O nas" [ref=e174] [cursor=pointer]:
+            - /url: /#about
+          - link "Usługi" [ref=e175] [cursor=pointer]:
+            - /url: /#services
+          - link "Realizacje" [ref=e176] [cursor=pointer]:
+            - /url: /#projects
+          - link "Kontakt" [ref=e177] [cursor=pointer]:
+            - /url: /#contact
+        - generic [ref=e178]:
+          - generic [ref=e179]: USŁUGI
+          - link "Zarządzanie" [ref=e180] [cursor=pointer]:
+            - /url: /zarzadzanie-nieruchomosciami
+          - link "Pośrednictwo" [ref=e181] [cursor=pointer]:
+            - /url: /posrednictwo-nieruchomosci
+          - link "Eventy" [ref=e182] [cursor=pointer]:
+            - /url: /organizacja-eventow
+        - generic [ref=e183]:
+          - generic [ref=e184]: KONTAKT
+          - generic [ref=e185]: 506 078 772
+          - generic [ref=e186]: biuro@nexaprojects.pl
+      - generic [ref=e187]:
+        - generic [ref=e188]: © 2025 NEXA PROJECTS
+        - generic [ref=e189]: POLITYKA PRYWATNOŚCI · REGULAMIN
+  - button "Open Next.js Dev Tools" [ref=e195] [cursor=pointer]:
+    - img [ref=e196]
+  - alert [ref=e199]

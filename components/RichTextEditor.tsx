@@ -4,7 +4,9 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { TextStyleKit } from "@tiptap/extension-text-style";
 import Placeholder from "@tiptap/extension-placeholder";
-import { useEffect, useCallback } from "react";
+import TiptapImage from "@tiptap/extension-image";
+import { useEffect, useCallback, useRef, useState } from "react";
+import MediaPicker from "@/components/MediaPicker";
 
 const FONT_SIZES = [
   { label: "Małe", value: "12px" },
@@ -60,6 +62,7 @@ export default function RichTextEditor({ value, onChange }: Props) {
       }),
       TextStyleKit.configure({ fontSize: {}, textStyle: {} }),
       Placeholder.configure({ placeholder: "Pełna treść artykułu…" }),
+      TiptapImage.configure({ inline: false, allowBase64: false }),
     ],
     immediatelyRender: false,
     content: value,
@@ -87,6 +90,26 @@ export default function RichTextEditor({ value, onChange }: Props) {
   }, [editor]);
 
   const currentFontSize = editor?.getAttributes("textStyle")?.fontSize as string | undefined;
+
+  const imageFileRef = useRef<HTMLInputElement>(null);
+  const [imageUploading, setImageUploading] = useState(false);
+  const [mediaPickerOpen, setMediaPickerOpen] = useState(false);
+
+  const insertImage = useCallback((url: string) => {
+    if (!editor) return;
+    editor.chain().focus().setImage({ src: url }).run();
+  }, [editor]);
+
+  const handleImageUpload = useCallback(async (file: File) => {
+    if (!editor) return;
+    setImageUploading(true);
+    const fd = new FormData();
+    fd.append("file", file);
+    const res = await fetch("/api/upload", { method: "POST", body: fd });
+    const data = await res.json();
+    if (res.ok) insertImage(data.url);
+    setImageUploading(false);
+  }, [editor, insertImage]);
 
   if (!editor) return null;
 
@@ -141,9 +164,43 @@ export default function RichTextEditor({ value, onChange }: Props) {
 
         <ToolbarButton title="Cofnij" onClick={() => editor.chain().focus().undo().run()} disabled={!editor.can().undo()}>↩</ToolbarButton>
         <ToolbarButton title="Ponów" onClick={() => editor.chain().focus().redo().run()} disabled={!editor.can().redo()}>↪</ToolbarButton>
+
+        <span className="w-px bg-black/10 mx-1 self-stretch" />
+
+        <ToolbarButton
+          title="Wgraj zdjęcie"
+          onClick={() => imageFileRef.current?.click()}
+          disabled={imageUploading}
+        >
+          {imageUploading ? "Wysyłanie…" : "Zdjęcie"}
+        </ToolbarButton>
+        <ToolbarButton
+          title="Zdjęcie z biblioteki"
+          onClick={() => setMediaPickerOpen(true)}
+        >
+          Biblioteka
+        </ToolbarButton>
       </div>
 
+      <input
+        ref={imageFileRef}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={e => {
+          const file = e.target.files?.[0];
+          if (file) handleImageUpload(file);
+          if (imageFileRef.current) imageFileRef.current.value = "";
+        }}
+      />
+
       <EditorContent editor={editor} />
+
+      <MediaPicker
+        open={mediaPickerOpen}
+        onClose={() => setMediaPickerOpen(false)}
+        onSelect={url => insertImage(url)}
+      />
     </div>
   );
 }
