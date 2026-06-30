@@ -18,7 +18,8 @@ export default async function Home() {
             .where(eq(initiatives.isActive, true))
             .orderBy(asc(initiatives.sortOrder)),
         db.select().from(blogPosts)
-            .where(and(eq(blogPosts.isFeatured, true), eq(blogPosts.isPublished, true))),
+            .where(and(eq(blogPosts.isFeatured, true), eq(blogPosts.isPublished, true)))
+            .orderBy(desc(blogPosts.date)),
         db.select().from(blogPosts)
             .where(and(eq(blogPosts.showInBlogSection, true), eq(blogPosts.isPublished, true)))
             .orderBy(desc(blogPosts.date))

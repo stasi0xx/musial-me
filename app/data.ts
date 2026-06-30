@@ -62,7 +62,7 @@ export const siteData = {
         ],
         metaBar: [
             { label: "DZIAŁ", value: "Blog osobisty" },
-            { label: "TEMATY", value: "marketing • rower • gdynia" }
+            { label: "TEMATY", value: "marketing • rower • turystyka • gdynia" }
         ]
     },
     featured: {
@@ -171,7 +171,7 @@ export const siteData = {
         id: "kontakt",
         sectionLabel: "Kontakt",
         headline: "Napisz lub zadzwoń",
-        text: "Jeśli chcesz porozmawiać o projekcie, współpracy lub masz sprawę do skonsultowania — kontakt bezpośredni jest najszybszy.",
+        text: "Jeśli chcesz porozmawiać o projekcie, współpracy lub masz sprawę do skonsultowania - kontakt bezpośredni jest najszybszy.",
         contact: {
             email: "pawel@musial.me",
             phone: "+48 601 683 050"

@@ -26,19 +26,19 @@ export const AboutSection = async () => {
                             O mnie
                         </span>
                         <h2 className="text-4xl md:text-5xl font-serif font-bold leading-tight mb-4">
-                            {name}{role ? ` — ${role}` : ''}
+                            {name}{role ? `, ${role}` : ''}
                         </h2>
                         {leadParagraph && (
-                            <p className="text-2xl font-serif leading-relaxed italic text-gray-800">
+                            <p className="text-xl font-serif leading-relaxed italic text-gray-800">
                                 {leadParagraph}
                             </p>
                         )}
                     </header>
 
                     {bodyParagraphs.length > 0 && (
-                        <div className="prose prose-xl text-gray-900 font-serif leading-relaxed">
+                        <div className="prose prose-lg text-gray-900 font-serif leading-relaxed">
                             {bodyParagraphs.map((p, i) => (
-                                <p key={i} className="text-2xl">{p}</p>
+                                <p key={i} className="text-lg">{p}</p>
                             ))}
                         </div>
                     )}
@@ -70,17 +70,25 @@ export const AboutSection = async () => {
                         <ul className="space-y-3 font-sans text-sm md:text-base mb-8 text-left w-full pl-4">
                             <li className="flex items-start gap-3">
                                 <span className="font-bold text-black min-w-[10px]">•</span>
-                                <span>20+ lat w marketingu</span>
+                                <span>20+ lat w marketingu i reklamie</span>
                             </li>
                             <li className="flex items-start gap-3">
                                 <span className="font-bold text-black min-w-[10px]">•</span>
-                                <span>Działania społeczne: miasto i dzielnica</span>
+                                <span>500+ projektów, od lokalnych firm po ogólnopolskie marki</span>
                             </li>
                             <li className="flex items-start gap-3">
                                 <span className="font-bold text-black min-w-[10px]">•</span>
-                                <span>Rower: codzienność, wydarzenia, trasy</span>
+                                <span>15+ lat w organizacji imprez turystycznych</span>
                             </li>
                         </ul>
+
+                        <div className="w-full pt-6 border-t border-gray-300 mb-8 text-left">
+                            <p className="font-bold italic text-base leading-relaxed text-gray-800">
+                                Mieszkam i działam w Gdyni, ale sercem na całym Pomorzu.<br />
+                                Tworzę marki, a nie tylko grafiki.<br />
+                                Lubię zadawać jedno pytanie: „Po co?” zanim padnie pytanie „Jak?”.
+                            </p>
+                        </div>
 
                         <div className="w-full pt-6 border-t border-gray-300">
                             <p className="font-sans text-xs uppercase tracking-wide text-gray-500 mb-2">

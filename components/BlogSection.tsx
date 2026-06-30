@@ -16,11 +16,11 @@ export default function BlogSection({ posts }: Props) {
 
     return (
         <section id="blog" className="py-20 w-full">
-            <header className="mb-16 flex flex-col md:flex-row justify-between items-end border-b-4 border-black pb-4 gap-4">
+            <header className="mb-16 flex flex-col md:flex-row justify-between items-start md:items-end border-b-4 border-black pb-4 gap-4">
                 <h2 className="text-3xl md:text-5xl font-serif font-bold uppercase tracking-wide">
                     {blog.sectionLabel}
                 </h2>
-                <Link href="/blog" className="px-6 py-3 border-2 border-black font-sans text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-[#f7f5ef] transition-colors mb-1">
+                <Link href="/blog" className="hidden md:inline-block px-6 py-3 border-2 border-black font-sans text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-[#f7f5ef] transition-colors mb-1">
                     Czytaj więcej
                 </Link>
             </header>
@@ -74,6 +74,10 @@ export default function BlogSection({ posts }: Props) {
                     </article>
                 ))}
             </div>
+
+            <Link href="/blog" className="md:hidden mt-12 mx-auto w-fit block px-6 py-3 border-2 border-black font-sans text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-[#f7f5ef] transition-colors">
+                Czytaj więcej
+            </Link>
         </section>
     );
 }

@@ -1,6 +1,6 @@
 import { db } from '@/lib/db';
 import { blogPosts } from '@/lib/schema';
-import { desc } from 'drizzle-orm';
+import { desc, sql } from 'drizzle-orm';
 import Link from 'next/link';
 import AdminDeleteButton from '@/components/AdminDeleteButton';
 
@@ -17,7 +17,7 @@ export default async function AdminBlogPage() {
       createdAt: blogPosts.createdAt,
     })
     .from(blogPosts)
-    .orderBy(desc(blogPosts.createdAt));
+    .orderBy(sql`${blogPosts.date} DESC NULLS LAST`, desc(blogPosts.createdAt));
 
   return (
     <div>
